@@ -21,7 +21,26 @@ namespace BitzenAppInfra.Repositories
 
         public int Adicionar(Usuario entity)
         {
-            throw new NotImplementedException();
+            using (var connection = _dbConnectionString.Connection())
+            {
+                connection.Open();
+
+                string sql = @"INSERT INTO
+                            ger_usuario
+                            (
+                                c_nome,
+                                c_email,
+                                c_senha
+                            )
+                        VALUES
+                            (
+                                @CNome,
+                                @CEmail,
+                                @CSenha
+                            )RETURNING n_cod_usuario";
+
+                return connection.ExecuteScalar<int>(sql, entity);
+            }
         }
 
         public int Atualizar(Usuario entity)

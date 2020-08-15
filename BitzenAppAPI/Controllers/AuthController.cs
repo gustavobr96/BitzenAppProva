@@ -30,5 +30,13 @@ namespace BitzenAppAPI.Controllers
 
             return login;
         }
+
+        [HttpPost]
+        [Route("adicionar")]
+        public int Adicionar([FromBody] UsuarioDto user)
+        {
+            return _appUsuario.Adicionar(user);
+        }
+
     }
 }

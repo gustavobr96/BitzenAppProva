@@ -10,5 +10,6 @@ namespace BitzenAppDomain.Interfaces.Services
         IEnumerable<Usuario> ObterTodos();
         Usuario ObterPorId(int id);
         Usuario AutenticarUsuario(Usuario usuario);
+        int Adicionar(Usuario usuario);
     }
 }

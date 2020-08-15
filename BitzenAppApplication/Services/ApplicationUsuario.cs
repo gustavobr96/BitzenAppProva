@@ -18,6 +18,8 @@ namespace BitzenAppApplication.Services
             _serviceUsuario = serviceUsuario;
         }
 
+       
+
         public UsuarioDto AutenticarUsuario(UsuarioDto usuario)
         {
             var usuarioAuth = new Usuario();
@@ -34,8 +36,14 @@ namespace BitzenAppApplication.Services
 
             return resDto;
         }
+        public int Adicionar(UsuarioDto entity)
+        {
+            Usuario usuario = new Usuario();
 
-     
+            usuario.PrepararDadosParaInserir(entity.CNome, entity.CEmail, entity.CSenha);
+            return _serviceUsuario.Adicionar(usuario);
+        }
+
 
         public void Dispose()
         {

@@ -22,11 +22,41 @@ namespace BitzenAppDomain.Entities
             CSenha = "";
             CEmail = "";
         }
+
+        public void PrepararDadosParaInserir(string cNome, string cEmail, string cSenha)
+        {
+            ValidarNome(cNome);
+            ValidarEmail(cEmail);
+            ValidarSenha(cSenha);
+
+        }
+
         public void PrepararParaAutenticar(string email, string senha)
         {
             ValidarEmail(email);
             ValidarSenha(senha);
         }
+
+        #region Validações
+
+        private void ValidarNome(string nome)
+        {
+            if (!string.IsNullOrEmpty(nome))
+            {
+                if (nome.Length > 100)
+                    ListaErros.Add("Campo excede o máximo permitido!");
+                else
+                {
+                    CNome = nome.Trim();
+                }
+
+            }
+            else
+            {
+                ListaErros.Add("Campo obrigatório!");
+            }
+        }
+
 
         private void ValidarEmail(string email)
         {
@@ -63,6 +93,9 @@ namespace BitzenAppDomain.Entities
                 ListaErros.Add("Campo obrigatório!");
             }
         }
+
+
+        #endregion
 
 
         public override bool EstaConsistente()

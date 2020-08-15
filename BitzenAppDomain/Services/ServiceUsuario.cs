@@ -29,8 +29,19 @@ namespace BitzenAppDomain.Services
 
             return null;
         }
+        public int Adicionar(Usuario usuario)
+        {
+            if (usuario == null)
+                return 0;
 
-      
+            if (usuario.EstaConsistente())
+            {
+                return _repoUsuario.Adicionar(usuario);
+            }
+
+            return 0;
+        }
+
         public Usuario ObterPorId(int id)
         {
             throw new NotImplementedException();
@@ -46,5 +57,6 @@ namespace BitzenAppDomain.Services
             GC.SuppressFinalize(this);
         }
 
+       
     }
 }

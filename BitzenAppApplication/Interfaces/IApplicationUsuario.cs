@@ -8,5 +8,6 @@ namespace BitzenAppApplication.Interfaces
     public interface IApplicationUsuario : IDisposable
     {
         UsuarioDto AutenticarUsuario(UsuarioDto usuario);
+        int Adicionar(UsuarioDto usuario);
     }
 }
