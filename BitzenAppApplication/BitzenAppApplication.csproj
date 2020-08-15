@@ -5,9 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dto\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\BitzenAppDomain\BitzenAppDomain.csproj" />
+    <ProjectReference Include="..\CrossCutting\CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>

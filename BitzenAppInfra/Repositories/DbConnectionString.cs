@@ -10,7 +10,7 @@ namespace BitzenAppInfra.Repositories
     {
         public NpgsqlConnection Connection()
         {
-            return new NpgsqlConnection("Server=localhost; Port=5432; User Id=postgres; Password=123; Database=");
+            return new NpgsqlConnection("Server=localhost; Port=5433; User Id=postgres; Password=123; Database=bd_bitzen");
         }
 
         public void Dispose()

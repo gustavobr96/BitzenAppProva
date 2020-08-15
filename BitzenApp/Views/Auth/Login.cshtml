@@ -1,0 +1,77 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model BitzenApp.Models.Usuario
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/css/bootadmin.min.css">
+
+    <title>Login | Sistema</title>
+</head>
+<body class="bg-light">
+
+    <div class="container h-100">
+        <div class="row h-40 justify-content-center align-items-center" style="margin-top:170px;">
+        </div>
+
+        <div class="row h-60 justify-content-center align-items-center">
+            <div class="col-md-4">
+                <br />
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" asp-for="CEmail" id="txtEmail" placeholder="Email" maxlength="100">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" asp-for="CSenha" id="txtSenha" placeholder="Senha" maxlength="15">
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <label class="form-check-label">
+                                    <input type="checkbox" name="remember" class="form-check-input">
+                                    Lembrar-me
+
+                                    <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Deseja que o sistema se lembre de seu login ?" />
+                                </label>
+                            </div>
+
+                            <div class="row">
+                                <div class="col pr-2">
+                                    <button type="submit" class="btn btn-block btn-primary">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div asp-validation-summary="All" class="text-danger validation-summary-errors"></div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/bootadmin.min.js"></script>
+
+</body>
+</html>

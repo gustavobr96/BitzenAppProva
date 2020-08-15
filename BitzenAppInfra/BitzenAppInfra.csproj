@@ -9,4 +9,9 @@
     <PackageReference Include="Npgsql" Version="4.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BitzenAppDomain\BitzenAppDomain.csproj" />
+    <ProjectReference Include="..\CrossCutting\CrossCutting.csproj" />
+  </ItemGroup>
+
 </Project>
