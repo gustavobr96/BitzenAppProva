@@ -97,7 +97,14 @@ namespace BitzenAppDomain.Entities
 
         #endregion
 
-
+        public void setNCodUsuario(int nCodUsuario)
+        {
+            NCodUsuario = nCodUsuario;
+        }
+        public void setCNome(string cNome)
+        {
+            CNome = cNome;
+        }
         public override bool EstaConsistente()
         {
             return !ListaErros.Any();

@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzenAppDomain", "BitzenAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzenAppInfra", "BitzenAppInfra\BitzenAppInfra.csproj", "{23148CAE-DE57-4688-92E2-E577BCDC42BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting", "CrossCutting\CrossCutting.csproj", "{6385C9C4-97DE-4045-BBA6-5A42A6B174F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting", "CrossCutting\CrossCutting.csproj", "{6385C9C4-97DE-4045-BBA6-5A42A6B174F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzenAppAPI", "BitzenAppAPI\BitzenAppAPI.csproj", "{B0CEA448-5E66-4906-97F1-AA858372F5F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzenAppAPI", "BitzenAppAPI\BitzenAppAPI.csproj", "{B0CEA448-5E66-4906-97F1-AA858372F5F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
