@@ -1,0 +1,35 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Cadastro de Abastecimento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2 class="mb-4">Relatório de Pagamentos</h2>
+
+<div class="card mb-3">
+    <div class="card-header bg-white font-weight-bold">
+        Quantidade Mensal de Litros Abastecidos no Período de um Ano
+    </div>
+    <div class="card-body">
+        <div class="table-responsive" id="destroy">
+            <table class="table table-striped" id="PagamentoRelatorio">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Mês</th>
+                        <th scope="col">Valor Pago</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/scripts/Relatorio/Pagamento.js"></script>
+}
+

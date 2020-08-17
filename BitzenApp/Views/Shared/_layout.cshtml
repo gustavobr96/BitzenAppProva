@@ -48,8 +48,17 @@
             <div id="barraLateral" class="sidebar sidebar-dark bg-dark d-print-none">
                 <ul class="list-unstyled">
                     <li>
-                        <a asp-area="" asp-controller="Veiculo" asp-action="Index"><i class="fa fa-fw fa-car"></i> Veículos</a>                       
-                        <a asp-area="" asp-controller="Abastecimento" asp-action="Index"><i class="fa fa-fw fa-gas-pump"></i> Abastecimento</a>                       
+                        <a asp-area="" asp-controller="Veiculo" asp-action="Index"><i class="fa fa-fw fa-car"></i> Veículos</a>
+                        <a asp-area="" asp-controller="Abastecimento" asp-action="Index"><i class="fa fa-fw fa-gas-pump"></i> Abastecimento</a>
+                        <a href="#sm_expand_1_1" data-toggle="collapse">
+                            <i class="fa fa-file-alt"></i> Relatórios
+                        </a>
+                        <ul id="sm_expand_1_1" class="list-unstyled collapse">
+                            <li><a asp-area="" asp-controller="Relatorio" asp-action="Abastecimento"><i class="fa fa-fw fa-angle-right"></i> Litros Abastecidos</a></li>
+                            <li><a asp-area="" asp-controller="Relatorio" asp-action="Pagamento"><i class="fa fa-fw fa-angle-right"></i> Pagamento Anual</a></li>
+                           
+
+                        </ul>
                     </li>
                 </ul>
             </div>

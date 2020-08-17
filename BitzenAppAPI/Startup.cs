@@ -45,12 +45,14 @@ namespace BitzenAppAPI
             services.AddScoped<IApplicationUsuario, ApplicationUsuario>();
             services.AddScoped<IApplicationVeiculo, ApplicationVeiculo>();
             services.AddScoped<IApplicationAbastecimento, ApplicationAbastecimento>();
+            services.AddScoped<IApplicationRelatorio, ApplicationRelatorio>();
          
 
             //Services
             services.AddScoped<IServiceUsuario, ServiceUsuario>();
             services.AddScoped<IServiceVeiculo, ServiceVeiculo>();
             services.AddScoped<IServiceAbastecimento, ServiceAbastecimento>();
+            services.AddScoped<IServiceRelatorio, ServiceRelatorio>();
            
 
 
@@ -58,6 +60,7 @@ namespace BitzenAppAPI
             services.AddScoped<IRepositoryUsuario, RepositoryUsuario>();
             services.AddScoped<IRepositoryVeiculo, RepositoryVeiculo>();
             services.AddScoped<IRepositoryAbastecimento, RepositoryAbastecimento>();
+            services.AddScoped<IRepositoryRelatorio, RepositoryRelatorio>();
             
 
             // infra
