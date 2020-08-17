@@ -19,7 +19,8 @@ namespace BitzenApp.Models
         public string TipoCombustivel { get; set; }
         public string NCodTipoCombustivel { get; set; }
         public string TipoVeiculo { get; set; }
-        public string CPlaca { get; set; }
         public string NCodTipoVeiculo { get; set; }
+        public string NCodVeiculo { get; set; }
+        public string CPlaca { get; set; }
     }
 }

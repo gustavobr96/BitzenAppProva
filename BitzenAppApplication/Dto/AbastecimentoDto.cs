@@ -20,6 +20,7 @@ namespace BitzenAppApplication.Dto
         public string NCodTipoCombustivel { get;  set; }
         public string TipoVeiculo  { get;  set; }
         public string NCodTipoVeiculo  { get;  set; }
+        public string NCodVeiculo { get; set; }
         public string CPlaca { get; set; }
 
         public static explicit operator AbastecimentoDto(Abastecimento a)
@@ -39,7 +40,8 @@ namespace BitzenAppApplication.Dto
               NCodTipoCombustivel = a.TipoCombustivel.NCodCombustivel.ToString(),
               TipoVeiculo = a.TipoVeiculo.CDescricao,
               NCodTipoVeiculo = a.TipoVeiculo.NCodTipoVeiculo.ToString(),
-              CPlaca = a.Veiculo.CPlaca
+              CPlaca = a.Veiculo.CPlaca,
+              NCodVeiculo = a.Veiculo.NCodVeiculo.ToString()
             };
         }
 

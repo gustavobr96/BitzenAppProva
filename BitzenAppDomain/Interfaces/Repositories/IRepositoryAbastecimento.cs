@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BitzenAppDomain.Interfaces.Repositories
 {
-    public interface IRepositoryAbastecimento :IRepository<Veiculo>
+    public interface IRepositoryAbastecimento :IRepository<Abastecimento>
     {
         IEnumerable<Abastecimento> ObterTodosPorUsuario(string user);
         IEnumerable<Posto> ObterTodosPosto();

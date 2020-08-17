@@ -27,19 +27,38 @@ namespace BitzenAppDomain.Services
 
         public int Adicionar(Abastecimento abastecimento)
         {
-            throw new NotImplementedException();
+            if (abastecimento == null)
+                return 0;
+
+            if (abastecimento.EstaConsistente())
+            {
+                return _repoAbastecimento.Adicionar(abastecimento);
+            }
+
+            return 0;
         }
 
         public int Atualizar(Abastecimento abastecimento)
         {
-            throw new NotImplementedException();
+            if (abastecimento == null)
+                return 0;
+
+            if (abastecimento.EstaConsistente())
+            {
+                return _repoAbastecimento.Atualizar(abastecimento);
+            }
+
+            return 0;
         }
 
      
 
         public Abastecimento ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            if (id > 0)
+                return _repoAbastecimento.ObterPorId(id);
+
+            return null;
         }
 
         public IEnumerable<Abastecimento> ObterTodos()
@@ -49,7 +68,10 @@ namespace BitzenAppDomain.Services
 
         public int Remover(int id)
         {
-            throw new NotImplementedException();
+            if (id > 0)
+                return _repoAbastecimento.Remover(id);
+
+            return -1;
         }
         public void Dispose()
         {

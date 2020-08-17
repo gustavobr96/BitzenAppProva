@@ -23,10 +23,10 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">KM do Abastecimento</th>
-                        <th scope="col">Listros Abastecidos</th>
+                        <th scope="col">KM Abastecimento</th>
+                        <th scope="col">Litros Abast/</th>
                         <th scope="col">Valor Pago</th>
-                        <th scope="col">Data do Abastecimento</th>
+                        <th scope="col">Data Abastecimento</th>
                         <th scope="col">Posto</th>
                         <th scope="col">Combustível</th>
                         <th scope="col">Tipo</th>
@@ -53,6 +53,7 @@
                         <div class="form-group col-md-6">
                             <label>Veículo<b>*</b> <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Selecione uma veículo" /></label>
                             <select class="form-control" name="selVeiculoAlt" id="selVeiculoAlt"></select>
+                            <input type="hidden" id="hdnId" value="0" />
                         </div>
                         <div class="form-group col-md-6">
                             <label>Posto<b>*</b> <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Selecione um posto" /></label>
@@ -72,21 +73,21 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>KM Abastecido<b>*</b> <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Informe o KM abastecido" /></label>
-                            <input type="text" class="form-control" name="txtKMAlt" id="txtKMAlt" placeholder="Ex: 39.00" />
+                            <input type="text" class="form-control maskDinheiro" name="txtKMAlt" id="txtKMAlt" placeholder="Ex: 39,00" />
                         </div>
                         <div class="form-group col-md-6">
                             <label>Litro(s) Abastecido(s)<b>*</b> <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Informe a quantidade de litro(s) abastecido" /></label>
-                            <input type="text" class="form-control" name="txtLitroAlt" id="txtLitroAlt" placeholder="Ex: 32.40" />
+                            <input type="text" class="form-control maskDinheiro" name="txtLitroAlt" id="txtLitroAlt" placeholder="Ex: 32,40" />
                         </div>
                         <div class="form-group col-md-6">
                             <label>Valor<b>*</b> <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Informe o valor abastecido!" /></label>
-                            <input type="text" class="form-control" name="txtValorAlt" id="txtValorAlt" />
+                            <input type="text" class="form-control maskDinheiro" name="txtValorAlt" id="txtValorAlt" />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="alterar_abastecimento"> Salvar</button>
+                <button type="button" class="btn btn-success" id="atualizar_abastecimento"> Salvar</button>
                 <button type="button" id="btnVoltar" data-dismiss="modal" class="btn btn-danger"> Fechar</button>
             </div>
         </div>
@@ -126,15 +127,15 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>KM Abastecido<b>*</b> <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Informe o KM abastecido" /></label>
-                            <input type="text" class="form-control" name="txtKM" id="txtKM" placeholder="Ex: 39.00" />
+                            <input type="text" class="form-control maskDinheiro" name="txtKM" id="txtKM" placeholder="Ex: 39,00" />
                         </div>
                         <div class="form-group col-md-6">
                             <label>Litro(s) Abastecido(s)<b>*</b> <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Informe a quantidade de litro(s) abastecido" /></label>
-                            <input type="text" class="form-control" name="txtLitro" id="txtLitro" placeholder="Ex: 32.40" />
+                            <input type="text" class="form-control maskDinheiro" name="txtLitro" id="txtLitro" placeholder="Ex: 32,40" />
                         </div>
                         <div class="form-group col-md-6">
                             <label>Valor<b>*</b> <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Informe o valor abastecido!" /></label>
-                            <input type="text" class="form-control" name="txtValor" id="txtValor" />
+                            <input type="text" class="form-control maskDinheiro" name="txtValor" id="txtValor" />
                         </div>
                     </div>
 
@@ -160,11 +161,11 @@
                 <p>
                     A confirmação resultará na exclusão permanente do item.
                     <br /><br />
-                    Tem certeza que deseja excluir este Veículo ?
+                    Tem certeza que deseja excluir este Abastecimento ?
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="delete_veiculo">SIM</button>
+                <button type="button" class="btn btn-success" id="delete_abastecimento">SIM</button>
                 <button type="button" id="btnVoltar" data-dismiss="modal" class="btn btn-danger">NÃO</button>
             </div>
         </div>

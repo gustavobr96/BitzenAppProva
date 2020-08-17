@@ -29,6 +29,126 @@ namespace BitzenAppDomain.Entities
             Veiculo = new Veiculo();
         }
 
+
+        public void PrepararDadosParaInserir(string NKmAbastecimento,string NLitroAbastecimento, string VVlrPago, string DAbastecimento, string Posto, string UsuarioInc, string TipoCombustivel,string TipoVeiculo, string Veiculo)
+        {
+            validarNKmAbastecimento(NKmAbastecimento);
+            validarNLitroAbastecimento(NLitroAbastecimento);
+            validarVVlrPago(VVlrPago);
+            validarDAbastecimento(DAbastecimento);
+            validarPosto(Posto);
+            validarUsuarioInc(UsuarioInc);
+            validarTipoCombustivel(TipoCombustivel);
+            validarTipoVeiculo(TipoVeiculo);
+            validarVeiculo(Veiculo);
+        }
+
+        public void PrepararDadosParaAtualizar(string NCodAbastecimento,string NKmAbastecimento, string NLitroAbastecimento, string VVlrPago, string DAbastecimento, string Posto, string UsuarioInc, string TipoCombustivel, string TipoVeiculo, string Veiculo)
+        {
+            validarNCodAbastecimento(NCodAbastecimento);
+            validarNKmAbastecimento(NKmAbastecimento);
+            validarNLitroAbastecimento(NLitroAbastecimento);
+            validarVVlrPago(VVlrPago);
+            validarDAbastecimento(DAbastecimento);
+            validarPosto(Posto);
+            validarTipoCombustivel(TipoCombustivel);
+            validarTipoVeiculo(TipoVeiculo);
+            validarVeiculo(Veiculo);
+        }
+
+
+        #region Validações
+        private void validarNCodAbastecimento(string nCodAbastecimento)
+        {
+            int auxnCodAbastecimento;
+            if (int.TryParse(nCodAbastecimento, out auxnCodAbastecimento))
+                NCodAbastecimento = auxnCodAbastecimento;
+            else
+                ListaErros.Add("O código do abastecimento está inválido");
+        }
+        private void validarNKmAbastecimento(string nKmAbastecimento)
+        {
+            double auxnKmAbastecimento;
+            if (double.TryParse(nKmAbastecimento, out auxnKmAbastecimento))
+                NKmAbastecimento = auxnKmAbastecimento;
+            else
+                ListaErros.Add("O KM abastecido está incorreto!");
+        }
+        private void validarNLitroAbastecimento(string nLitroAbastecimento)
+        {
+            double auxnLitroAbastecimento;
+            if (double.TryParse(nLitroAbastecimento, out auxnLitroAbastecimento))
+                NLitroAbastecimento = auxnLitroAbastecimento;
+            else
+                ListaErros.Add("O quantidade de litros abastecidos está incorreto!");
+        }
+        private void validarVVlrPago(string vVlrPago)
+        {
+            double auxvVlrPago;
+            if (double.TryParse(vVlrPago, out auxvVlrPago))
+                VVlrPago = auxvVlrPago;
+            else
+                ListaErros.Add("O valor está incorreto!");
+        }
+
+        private void validarDAbastecimento(string dAbastecimento)
+        {
+            DateTime auxdt;
+            if (DateTime.TryParse(dAbastecimento, out auxdt))
+                DAbastecimento = auxdt;
+            else
+                ListaErros.Add("Data de abastecimento incorreta!");
+
+        }
+        private void validarPosto(string posto)
+        {
+            int auxnPosto;
+            if (int.TryParse(posto, out auxnPosto))
+                Posto.setNCodPosto(auxnPosto);
+            else
+                ListaErros.Add("O código do posto está incorreto");
+
+        }
+        private void validarUsuarioInc(string usuarioInc)
+        {
+            int auxnusuarioInc;
+            if (int.TryParse(usuarioInc, out auxnusuarioInc))
+                UsuarioInc.setNCodUsuario(auxnusuarioInc);
+            else
+                ListaErros.Add("O código do usuário não foi encontrado");
+
+        }
+        private void validarTipoCombustivel(string tipoCombustivel)
+        {
+            int auxtipoCombustivel;
+            if (int.TryParse(tipoCombustivel, out auxtipoCombustivel))
+                TipoCombustivel.setNCodCombustivel(auxtipoCombustivel);
+            else
+                ListaErros.Add("O tipo de combustível está incorreto");
+
+        }
+        private void validarTipoVeiculo(string tipoVeiculo)
+        {
+            int auxtipoVeiculo;
+            if (int.TryParse(tipoVeiculo, out auxtipoVeiculo))
+                TipoVeiculo.setNCodTipoVeiculo(auxtipoVeiculo);
+            else
+                ListaErros.Add("O tipo de veículo está incorreto!");
+
+        }
+        private void validarVeiculo(string veiculo)
+        {
+            int auxveiculo;
+            if (int.TryParse(veiculo, out auxveiculo))
+                Veiculo.setNCodVeiculo(auxveiculo);
+            else
+                ListaErros.Add("Veículo incorreto!");
+
+        }
+
+
+        #endregion
+
         #region setters
         public void setVeiculo(Veiculo veiculo)
         {

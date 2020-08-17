@@ -4,6 +4,7 @@ using BitzenAppInfra.Interfaces;
 using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BitzenAppInfra.Repositories
@@ -16,27 +17,6 @@ namespace BitzenAppInfra.Repositories
         {
             _dbConnectionString = dbConnectionString;
             DefaultTypeMap.MatchNamesWithUnderscores = true;
-        }
-
-        public int Adicionar(Veiculo entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Atualizar(Veiculo entity)
-        {
-            throw new NotImplementedException();
-        }
-
-  
-        public Veiculo ObterPorId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Veiculo> ObterTodos()
-        {
-            throw new NotImplementedException();
         }
 
         public IEnumerable<Posto> ObterTodosPosto()
@@ -135,15 +115,157 @@ namespace BitzenAppInfra.Repositories
 
         public int Remover(int id)
         {
+            using (var connection = _dbConnectionString.Connection())
+            {
+                connection.Open();
+
+                string sql = @"DELETE 
+                                    FROM
+                                ger_abastecimento
+                            WHERE 
+                                n_cod_abastecimento = @id;";
+
+                return connection.Execute(sql, new { id = id });
+
+            }
+        }
+
+
+        public int Adicionar(Abastecimento entity)
+        {
+            using (var connection = _dbConnectionString.Connection())
+            {
+                connection.Open();
+
+                string sql = @"INSERT INTO
+                            ger_abastecimento
+                            (
+                                n_km_abastecimento,
+                                n_litro_abastecimento,
+                                v_vlr_pago,
+                                d_abastecimento,
+                                n_cod_posto,
+                                n_cod_usuario,
+                                n_cod_combustivel,
+                                n_cod_veiculo,
+                                n_cod_tipo_veiculo
+                            )
+                        VALUES
+                            (
+                                @NKmAbastecimento,
+                                @NLitroAbastecimento,
+                                @VVlrPago,
+                                @DAbastecimento,
+                                @NCodPosto,
+                                @NCodUsuario,
+                                @NCodCombustivel,
+                                @NCodVeiculo,
+                                @NCodTipoVeiculo
+                            )RETURNING n_cod_abastecimento";
+
+                return connection.ExecuteScalar<int>(sql, new
+                {
+                    NKmAbastecimento = entity.NKmAbastecimento,
+                    NLitroAbastecimento = entity.NLitroAbastecimento,
+                    VVlrPago = entity.VVlrPago,
+                    DAbastecimento = entity.DAbastecimento,
+                    NCodPosto = entity.Posto.NCodPosto,
+                    NCodUsuario = entity.UsuarioInc.NCodUsuario,
+                    NCodCombustivel = entity.TipoCombustivel.NCodCombustivel,
+                    NCodVeiculo = entity.Veiculo.NCodVeiculo,
+                    NCodTipoVeiculo = entity.TipoVeiculo.NCodTipoVeiculo
+                });
+            }
+        }
+
+        public int Atualizar(Abastecimento entity)
+        {
+            using (var connection = _dbConnectionString.Connection())
+            {
+                connection.Open();
+
+                string sql = @"UPDATE 
+                            ger_abastecimento
+                            SET
+                                n_km_abastecimento =   @NKmAbastecimento,
+                                n_litro_abastecimento =   @NLitroAbastecimento,
+                                v_vlr_pago =  @VVlrPago,
+                                d_abastecimento =   @DAbastecimento,
+                                n_cod_posto =  @NCodPosto,
+                                n_cod_combustivel = @NCodCombustivel,
+                                n_cod_veiculo =  @NCodVeiculo,
+                                n_cod_tipo_veiculo =   @NCodTipoVeiculo
+
+                           WHERE n_cod_abastecimento = @NCodAbastecimento; ";
+
+                return connection.Execute(sql, new
+                {
+                    NKmAbastecimento = entity.NKmAbastecimento,
+                    NLitroAbastecimento = entity.NLitroAbastecimento,
+                    VVlrPago = entity.VVlrPago,
+                    DAbastecimento = entity.DAbastecimento,
+                    NCodPosto = entity.Posto.NCodPosto,
+                    NCodCombustivel = entity.TipoCombustivel.NCodCombustivel,
+                    NCodVeiculo = entity.Veiculo.NCodVeiculo,
+                    NCodTipoVeiculo = entity.TipoVeiculo.NCodTipoVeiculo,
+                    NCodAbastecimento = entity.NCodAbastecimento
+                });
+            }
+        }
+
+        public IEnumerable<Abastecimento> ObterTodos()
+        {
             throw new NotImplementedException();
         }
+
+        public Abastecimento ObterPorId(int id)
+        {
+            using (var connection = _dbConnectionString.Connection())
+            {
+                connection.Open();
+                Abastecimento a = new Abastecimento();
+                var sql = @"SELECT 
+	                           *
+                        FROM 
+                            ger_abastecimento 
+                        WHERE 
+                            n_cod_abastecimento = @id";
+
+                var item = connection.Query<dynamic>(sql, new { id = id }).FirstOrDefault();
+                if (item != null)
+                {
+                    Posto posto = new Posto();
+                    TipoCombustivel combustivel =  new TipoCombustivel();
+                    TipoVeiculo tipoveiculo = new TipoVeiculo();
+                    Veiculo veiculo = new Veiculo();
+             
+
+                    posto.setNCodPosto(item.n_cod_posto);
+                    combustivel.setNCodCombustivel(item.n_cod_combustivel);
+                    tipoveiculo.setNCodTipoVeiculo(item.n_cod_veiculo);
+                    veiculo.setNCodVeiculo(item.n_cod_veiculo);
+
+                    a.setVeiculo(veiculo);
+                    a.setPosto(posto);
+                    a.setTipoCombustivel(combustivel);
+                    a.setTipoVeiculo(tipoveiculo);
+                    a.setNCodAbastecimento(item.n_cod_abastecimento);
+                    a.setDAbastecimento(item.d_abastecimento);
+                    a.setNKmAbastecimento(item.n_km_abastecimento);
+                    a.setNLitroAbastecimento(item.n_litro_abastecimento);
+                    a.setVVlrPago(item.v_vlr_pago);
+                 
+                }
+                return a;
+
+            }
+        }
+
 
         public void Dispose()
         {
             _dbConnectionString.Dispose();
             GC.SuppressFinalize(this);
         }
-
-      
     }
 }

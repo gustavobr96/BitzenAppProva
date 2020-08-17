@@ -30,47 +30,6 @@ function Alerta(divId, msg) {
     $("#" + divId).hide(300);
 };
 
-function DataAtual() {
-
-    let today = new Date();
-    let dd = today.getDate();
-
-    let mm = today.getMonth() + 1;
-    const yyyy = today.getFullYear();
-    if (dd < 10) {
-        dd = `0${dd}`;
-    }
-
-    if (mm < 10) {
-        mm = `0${mm}`;
-    }
-    today = `${dd}/${mm}/${yyyy}`;
-
-    return today;
-}
-
-
-function validaData(data) {
-    reg = /[^\d\/\.]/gi;                  // Mascara = dd/mm/aaaa | dd.mm.aaaa
-    let valida = data.replace(reg, '');    // aplica mascara e valida só numeros
-    if (valida && valida.length == 10) {  // é válida, então ;)
-        let ano = data.substr(6),
-            mes = data.substr(3, 2),
-            dia = data.substr(0, 2),
-            M30 = ['04', '06', '09', '11'],
-            v_mes = /(0[1-9])|(1[0-2])/.test(mes),
-            v_ano = /(19[1-9]\d)|(20\d\d)|2100/.test(ano),
-            rexpr = new RegExp(mes),
-            fev29 = ano % 4 ? 28 : 29;
-
-        if (v_mes && v_ano) {
-            if (mes == '02') return (dia >= 1 && dia <= fev29);
-            else if (rexpr.test(M30)) return /((0[1-9])|([1-2]\d)|30)/.test(dia);
-            else return /((0[1-9])|([1-2]\d)|3[0-1])/.test(dia);
-        }
-    }
-    return false
-}
 
 
 
@@ -110,38 +69,6 @@ function dataTable(nomeTabela, valida = 0, ordenacao = 'desc') {
     });
 
 
-}
-
-function validarEmail(field) {
-
-    let emailInvalido = false;
-    let usuario = "";
-    let dominio = "";
-
-    if (field != null || field != '') {
-
-        usuario = field.value.substring(0, field.value.indexOf("@"));
-        dominio = field.value.substring(field.value.indexOf("@") + 1, field.value.length);
-
-
-        if ((usuario.length >= 1) &&
-            (dominio.length >= 3) &&
-            (usuario.search("@") == -1) &&
-            (dominio.search("@") == -1) &&
-            (usuario.search(" ") == -1) &&
-            (dominio.search(" ") == -1) &&
-            (dominio.search(".") != -1) &&
-            (dominio.indexOf(".") >= 1) &&
-            (dominio.lastIndexOf(".") < dominio.length - 1)) {
-
-            emailInvalido = false;
-        }
-        else {
-            emailInvalido = true;
-        }
-    }
-
-    return emailInvalido;
 }
 
 function converterPadraoDataBr(dt) {

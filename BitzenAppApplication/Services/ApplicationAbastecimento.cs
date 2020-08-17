@@ -1,5 +1,6 @@
 ﻿using BitzenAppApplication.Dto;
 using BitzenAppApplication.Interfaces;
+using BitzenAppDomain.Entities;
 using BitzenAppDomain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
@@ -32,19 +33,26 @@ namespace BitzenAppApplication.Services
 
         public int Adicionar(AbastecimentoDto entity)
         {
-            throw new NotImplementedException();
+            Abastecimento abastecimento = new Abastecimento();
+            abastecimento.PrepararDadosParaInserir(entity.NKmAbastecimento, entity.NLitroAbastecimento, entity.VVlrPago, entity.DAbastecimento, entity.NCodPosto, entity.NCodUsuarioInc, entity.NCodTipoCombustivel, entity.NCodTipoVeiculo, entity.NCodVeiculo);
+            return _serviceAbastecimento.Adicionar(abastecimento);
         }
 
         public int Atualizar(AbastecimentoDto entity)
         {
-            throw new NotImplementedException();
+            Abastecimento abastecimento = new Abastecimento();
+            abastecimento.PrepararDadosParaAtualizar(entity.NCodAbastecimento,entity.NKmAbastecimento, entity.NLitroAbastecimento, entity.VVlrPago, entity.DAbastecimento, entity.NCodPosto, entity.NCodUsuarioInc, entity.NCodTipoCombustivel, entity.NCodTipoVeiculo, entity.NCodVeiculo);
+            return _serviceAbastecimento.Atualizar(abastecimento);
+        }
+        public int Remover(int id)
+        {
+            return _serviceAbastecimento.Remover(id);
         }
 
-    
 
         public AbastecimentoDto ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            return (AbastecimentoDto)_serviceAbastecimento.ObterPorId(id);
         }
 
         public IEnumerable<AbastecimentoDto> ObterTodos()
@@ -52,12 +60,7 @@ namespace BitzenAppApplication.Services
             throw new NotImplementedException();
         }
 
-     
-
-        public int Remover(int id)
-        {
-            throw new NotImplementedException();
-        }
+    
 
         public void Dispose()
         {

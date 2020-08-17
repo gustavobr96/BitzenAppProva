@@ -269,6 +269,10 @@ function AtualizarVeiculo() {
     let id = document.getElementById('hdnId').value;
     let erros = "";
 
+
+    if (id == 0 || id == null)
+        erros += "Erro ao obter o registro!";
+
     if (selmarca == 0 || selmarca == null)
         erros += "Selecione a marca";
     if (id == 0 || id == null)
@@ -313,7 +317,7 @@ function AtualizarVeiculo() {
                     toastr['error'](MSG_REGISTRO_DUPLICADO, TITULO_TOASTR_ERRO);
                 }
                 else if (res >= 1) {
-                    toastr['success'](MSG_SUCESSO, TITULO_TOASTR_SUCESSO);
+                    toastr['success'](MSG_ATUALIZADO, TITULO_TOASTR_SUCESSO);
                     AtualizaTable();
                     jQuery('#modalNovoRegistro').modal('hide');
                     $("#selMarcaAlt").val(0);
@@ -327,7 +331,7 @@ function AtualizarVeiculo() {
                     $("#hdnId").val("0");
                     jQuery('#modalAlterarRegistro').modal('hide');
                 } else {
-                    toastr['error'](MSG_ERRO_INSERIR, TITULO_TOASTR_ERRO);
+                    toastr['error'](MSG_ERRO_ATUALIZAR, TITULO_TOASTR_ERRO);
                 }
             });
 
@@ -336,8 +340,6 @@ function AtualizarVeiculo() {
     }
     else
         toastr['error'](erros, TITULO_TOASTR_ATENCAO);
-
-  
 }
 
 
