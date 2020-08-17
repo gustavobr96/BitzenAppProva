@@ -5,6 +5,7 @@
     PopularSelectTipoVeiculo();
     PopularSelectTipoCombustivel();
     $("#hdnModelo").val("0");
+    $("#hdnId").val("0");
 
 });
 
@@ -240,6 +241,7 @@ async function AlterarVeiculo(codigo) {
     $("#txtAnoAlt").val(data.DAno);
     $("#txtPlacaAlt").val(data.CPlaca);
     $("#txtQuilometragemAlt").val(data.CQuilometragem);
+    $("#hdnId").val(data.NCodVeiculo);
 
 
     jQuery('#modalAlterarRegistro').modal({
@@ -252,6 +254,92 @@ async function AlterarVeiculo(codigo) {
 document.getElementById("alterar_veiculo").addEventListener("click", function () {
     AtualizarVeiculo();
 });
+
+
+
+function AtualizarVeiculo() {
+
+    let selmarca = document.getElementById('selMarcaAlt').value;
+    let selmodelo = document.getElementById('selModeloAlt').value;
+    let seltipo = document.getElementById('selTipoAlt').value;
+    let selcombustivel = document.getElementById('selCombustivelAlt').value;
+    let ano = document.getElementById('txtAnoAlt').value;
+    let placa = document.getElementById('txtPlacaAlt').value;
+    let quilometragem = document.getElementById('txtQuilometragemAlt').value;
+    let id = document.getElementById('hdnId').value;
+    let erros = "";
+
+    if (selmarca == 0 || selmarca == null)
+        erros += "Selecione a marca";
+    if (id == 0 || id == null)
+        erros += "Erro ao encontrar ID!";
+    if (selmodelo == 0 || selmodelo == null)
+        erros += "</br>Selecione o modelo";
+    if (seltipo == 0 || seltipo == null)
+        erros += "</br>Selecione o tipo";
+    if (selcombustivel == 0 || selcombustivel == null)
+        erros += "</br>Selecione o combustível";
+    if (ano.length < 4)
+        erros += "</br>O ano está incorreto, preencha corretamente!";
+    if (quilometragem.length == 0)
+        erros += "</br>Preencha a quilometragem!";
+
+
+    if (erros.length == 0) {
+
+        const dto = {
+            NCodMarca: selmarca,
+            NCodModelo: selmodelo,
+            NCodTipoVeiculo: seltipo,
+            NCodTipoCombustivel: selcombustivel,
+            DAno: ano,
+            CPlaca: placa,
+            CQuilometragem: quilometragem,
+            NCodVeiculo: id
+        };
+
+        document.getElementById('alterar_veiculo').disabled = true;
+
+        fetch('../../cadastro/veiculo/alterar', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dto)
+        }).then(res => res.json())
+            .then(res => {
+                if (res == -1) {
+                    toastr['error'](MSG_REGISTRO_DUPLICADO, TITULO_TOASTR_ERRO);
+                }
+                else if (res >= 1) {
+                    toastr['success'](MSG_SUCESSO, TITULO_TOASTR_SUCESSO);
+                    AtualizaTable();
+                    jQuery('#modalNovoRegistro').modal('hide');
+                    $("#selMarcaAlt").val(0);
+                    $("#selModeloAlt").val(0);
+                    $("#selTipoAlt").val(0);
+                    $("#selCombustivelAlt").val(0);
+                    $("#txtAnoAlt").val("");
+                    $("#txtPlacaAlt").val("");
+                    $("#txtQuilometragemAlt").val("");
+                    $("#hdnModelo").val("0");
+                    $("#hdnId").val("0");
+                    jQuery('#modalAlterarRegistro').modal('hide');
+                } else {
+                    toastr['error'](MSG_ERRO_INSERIR, TITULO_TOASTR_ERRO);
+                }
+            });
+
+        document.getElementById('alterar_veiculo').disabled = false;
+
+    }
+    else
+        toastr['error'](erros, TITULO_TOASTR_ATENCAO);
+
+  
+}
+
 
 
 function RemoverVeiculo(id) {

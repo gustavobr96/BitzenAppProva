@@ -209,7 +209,28 @@ namespace BitzenAppInfra.Repositories
 
         public int Atualizar(Veiculo entity)
         {
-            throw new NotImplementedException();
+            using (var connection = _dbConnectionString.Connection())
+            {
+                connection.Open();
+
+                string sql = @"UPDATE 
+                                ger_veiculo
+                            SET
+                                n_cod_marca = @NCodMarca,
+                                n_cod_modelo = @NCodModelo,
+                                c_placa = @CPlaca,
+                                n_cod_tipo_veiculo = @NCodTipoVeiculo,
+                                n_cod_combustivel = @NCodCombustivel,
+                                n_quilometragem = @NQuilometragem,
+                                d_ano = @DAno
+                            WHERE 
+                                n_cod_veiculo = @NCodVeiculo ;";
+
+                return connection.Execute(sql, new { NCodMarca = entity.Marca.NCodMarca, NCodModelo = entity.Modelo.NCodModelo, CPlaca = entity.CPlaca,
+                    NCodTipoVeiculo = entity.TipoVeiculo.NCodTipoVeiculo, NQuilometragem = entity.CQuilometragem, DAno = entity.DAno,
+                    NCodCombustivel = entity.TipoCombustivel.NCodCombustivel, NCodVeiculo = entity.NCodVeiculo });
+
+            }
         }
 
      

@@ -27,7 +27,9 @@ namespace BitzenAppApplication.Services
 
         public int Atualizar(VeiculoDto entity)
         {
-            throw new NotImplementedException();
+            Veiculo veiculo = new Veiculo();
+            veiculo.PrepararDadosParaAtualizar(entity.NCodVeiculo,entity.NCodMarca, entity.NCodModelo, entity.DAno, entity.CPlaca, entity.NCodTipoVeiculo, entity.NCodTipoCombustivel, entity.CQuilometragem, entity.NCodUsuarioResp);
+            return _serviceVeiculo.Atualizar(veiculo);
         }
 
         

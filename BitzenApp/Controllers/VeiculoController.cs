@@ -20,7 +20,7 @@ namespace BitzenApp.Controllers
             string user = HttpContext.User.Claims.FirstOrDefault().Value;
            
             ConfigApi api = new ConfigApi();
-            string url = api.UrlAPI + "veiculo/listarContratosPendente";
+            string url = api.UrlAPI + "veiculo/obtertodosporusuario";
             using (HttpClient client = new HttpClient())
             {
 
@@ -171,6 +171,28 @@ namespace BitzenApp.Controllers
             }
 
         }
+
+        [Route("alterar")]
+        [HttpPost]
+        public JsonResult Alterar([FromBody] Veiculo veiculo)
+        {
+            ConfigApi api = new ConfigApi();
+            string url = api.UrlAPI + "veiculo/alterar";
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = client.PostAsync(url,
+                new StringContent(JsonConvert.SerializeObject(veiculo), Encoding.UTF8, "application/json")).Result;
+
+                string json = response.Content.ReadAsStringAsync().Result;
+                int result = JsonConvert.DeserializeObject<int>(json);
+
+                var jsettings = new JsonSerializerSettings();
+
+                return Json(result, jsettings);
+            }
+
+        }
+
 
         [Route("obterporid/{id}")]
         [HttpGet]

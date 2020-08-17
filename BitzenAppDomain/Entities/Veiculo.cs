@@ -42,6 +42,19 @@ namespace BitzenAppDomain.Entities
 
         }
 
+        public void PrepararDadosParaAtualizar(string NCodVeiculo, string CMarca, string CModelo, string CAno, string CPlaca, string CTipoVeiculo, string CTipoCombustivel, string CCquilometragem, string CUsuario)
+        {
+            validarNCodVeiculo(NCodVeiculo);
+            validarMarca(CMarca);
+            validarModelo(CModelo);
+            validarCAno(CAno);
+            validarCPlaca(CPlaca);
+            validarCTipoVeiculo(CTipoVeiculo);
+            validarCTipoCombustivel(CTipoCombustivel);
+            validarCCquilometragem(CCquilometragem);
+
+        }
+
         #region validações
         private void validarMarca(string cMarca)
         {
@@ -70,6 +83,14 @@ namespace BitzenAppDomain.Entities
                 DAno = auxAno;
             else
                 ListaErros.Add("O ano é obrigatório");
+        }
+        private void validarNCodVeiculo(string nCodVeiculo)
+        {
+            int auxnCodVeiculo;
+            if (int.TryParse(nCodVeiculo, out auxnCodVeiculo))
+                NCodVeiculo = auxnCodVeiculo;
+            else
+                ListaErros.Add("O código do veículo está inválido");
         }
         private void validarCPlaca(string cPlaca)
         {

@@ -31,7 +31,15 @@ namespace BitzenAppDomain.Services
 
         public int Atualizar(Veiculo veiculo)
         {
-            throw new NotImplementedException();
+            if(veiculo == null)
+                return 0;
+
+            if (veiculo.EstaConsistente())
+            {
+                return _repoVeiculo.Atualizar(veiculo);
+            }
+
+            return 0;
         }
 
         public Veiculo ObterPorId(int id)

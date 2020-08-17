@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Cadastro de Plano";
+    ViewData["Title"] = "Cadastro de Veículo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -44,7 +44,7 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Aterar Plano</h4>
+                <h4 class="modal-title">Aterar Veículo</h4>
             </div>
             <div class="modal-body">
                 <div class="card-body">
@@ -52,6 +52,7 @@
                         <div class="form-group col-md-6">
                             <label>Marca<b>*</b> <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Selecione uma marca" /></label>
                             <select class="form-control" name="selMarcaAlt" id="selMarcaAlt"></select>
+                            <input type="hidden" id="hdnId" value="0" />
                         </div>
                         <div class="form-group col-md-6">
                             <label>Modelo<b>*</b> <img src="https://img.icons8.com/flat_round/15/000000/info.png" data-toggle="tooltip" data-placement="top" title="Selecione um modelo" /></label>
@@ -83,7 +84,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="alterar_plano"> Salvar</button>
+                <button type="button" class="btn btn-success" id="alterar_veiculo"> Salvar</button>
                 <button type="button" id="btnVoltar" data-dismiss="modal" class="btn btn-danger"> Fechar</button>
             </div>
         </div>

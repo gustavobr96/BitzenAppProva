@@ -44,17 +44,20 @@ namespace BitzenAppAPI
             //Applications
             services.AddScoped<IApplicationUsuario, ApplicationUsuario>();
             services.AddScoped<IApplicationVeiculo, ApplicationVeiculo>();
+            services.AddScoped<IApplicationAbastecimento, ApplicationAbastecimento>();
          
 
             //Services
             services.AddScoped<IServiceUsuario, ServiceUsuario>();
             services.AddScoped<IServiceVeiculo, ServiceVeiculo>();
+            services.AddScoped<IServiceAbastecimento, ServiceAbastecimento>();
            
 
 
             //Repositorios
             services.AddScoped<IRepositoryUsuario, RepositoryUsuario>();
             services.AddScoped<IRepositoryVeiculo, RepositoryVeiculo>();
+            services.AddScoped<IRepositoryAbastecimento, RepositoryAbastecimento>();
             
 
             // infra

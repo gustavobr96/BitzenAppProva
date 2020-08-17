@@ -43,7 +43,7 @@ namespace BitzenAppAPI.Controllers
         }
 
         [HttpPost]
-        [Route("listarContratosPendente")]
+        [Route("obtertodosporusuario")]
         public IEnumerable<VeiculoDto> ObterTodosPorUsuario([FromBody]string usuario)
         {
             return _appVeiculo.ObterTodosPorUsuario(usuario);
