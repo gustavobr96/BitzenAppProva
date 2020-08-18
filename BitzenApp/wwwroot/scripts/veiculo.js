@@ -110,7 +110,6 @@ async function carregarDadosTabelaVeiculo() {
                <td>${dado.CTipoCombustivel}</td>
                <td>${dado.CQuilometragem}</td>
                <td>
-                    <button class="btn btn-icon btn-success" id="btnFoto${dado.NCodVeiculo}" onclick="ExibirFoto(${dado.NCodVeiculo})"><i class="fa fa-image"></i></button>
                     <button class="btn btn-icon btn-primary" id="btnAlterarVeiculo${dado.NCodVeiculo}" onclick="AlterarVeiculo(${dado.NCodVeiculo})"><i class="fa fa-edit"></i></button>
                     <button class="btn btn-icon btn-danger" id="btnRemoverVeiculo${dado.NCodVeiculo}" onclick="RemoverVeiculo(${dado.NCodVeiculo})"><i class="fa fa-trash"></i></button>
                </td>
